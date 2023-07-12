@@ -25,8 +25,8 @@ Staff.prototype.calcSalary = function () {
 // calcWorkingTime for Staff
 Staff.prototype.calcTotalTime = function () {
   let totalTime = this.time;
-  if (totalTime >= 200) return "Xuất Sắc";
-  if (totalTime >= 150) return "Giỏi";
-  if (totalTime >= 100) return "Khá";
+  if (totalTime >= 192) return "Xuất Sắc";
+  if (totalTime >= 176) return "Giỏi";
+  if (totalTime >= 160) return "Khá";
   return "Trung Bình";
 };

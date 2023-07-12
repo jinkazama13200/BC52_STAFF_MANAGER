@@ -12,6 +12,25 @@ let staffs = [];
 let isSubmitted = false;
 // add staff function
 
+init();
+// function init
+function init() {
+  staffs = JSON.parse(localStorage.getItem("staffs"));
+  staffs = staffs.map((value) => {
+    return new Staff(
+      value.id,
+      value.name,
+      value.email,
+      value.password,
+      value.date,
+      value.salary,
+      value.rank,
+      value.time
+    );
+  });
+
+  display(staffs);
+}
 function addStaff() {
   isSubmitted = true;
   let staff = validate();
@@ -22,6 +41,8 @@ function addStaff() {
   staffs.push(staff);
   //Modal hide after added
   $("#myModal").modal("hide");
+  // localstorage
+  localStorage.setItem("staffs", JSON.stringify(staffs));
   // display for staff
   display(staffs);
 
@@ -86,6 +107,9 @@ function removeStaff(staffId) {
   staffs = staffs.filter((value) => {
     return value.id !== staffId;
   });
+  // localstorage
+  localStorage.setItem("staffs", JSON.stringify(staffs));
+
   display(staffs);
 }
 
@@ -118,7 +142,8 @@ function updateStaff() {
     return value.id === staff.id;
   });
   staffs[update] = staff;
-
+  // localstorage
+  localStorage.setItem("staffs", JSON.stringify(staffs));
   //Modal hide after added
   $("#myModal").modal("hide");
 
@@ -150,6 +175,7 @@ function searchStaff() {
 function isRequired(value) {
   // check chuỗi rỗng
   if (!value.trim()) {
+    // thêm ! để xét điều kiện chuỗi rỗng về true
     return false;
   }
   return true;
