@@ -4,7 +4,8 @@ function DomId(n) {
 }
 
 DomId("btnThem").onclick = function () {
-  DomId("btnCapNhat").disabled = true;
+  DomId("btnThemNV").style.display = "block";
+  DomId("btnCapNhat").style.display = "none";
 };
 
 let staffs = [];
@@ -15,7 +16,7 @@ let isSubmitted = false;
 init();
 // function init
 function init() {
-  staffs = JSON.parse(localStorage.getItem("staffs"));
+  staffs = JSON.parse(localStorage.getItem("staffs")) || [];
   staffs = staffs.map((value) => {
     return new Staff(
       value.id,
@@ -128,7 +129,8 @@ function editStaff(staffId) {
   DomId("gioLam").value = staff.time;
 
   DomId("btnCapNhat").disabled = false;
-  DomId("btnThemNV").disabled = true;
+  DomId("btnThemNV").style.display = "none";
+  DomId("btnCapNhat").style.display = "block";
   DomId("tknv").disabled = true;
 }
 
